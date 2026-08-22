@@ -1,0 +1,22 @@
+# Java Core Notes
+
+1. Platform Architecture
+- JVM (Java Virtual Machine): Executes bytecode (`.class` files).
+- JRE (Java Runtime Environment): JVM + core libraries to run Java apps.
+- JDK (Java Development Kit): JRE + development tools (compiler `javac`, debugger).
+- JIT Compiler: Compiles frequently executed bytecode into native machine code at runtime for performance.
+
+2. OOP Pillars
+- Encapsulation: Restricting direct access to object state via access modifiers (private, protected, public).
+- Inheritance: Subclass extending a superclass (`extends`).
+- Polymorphism: Compile-time (Method Overloading) vs. Runtime (Method Overriding).
+- Abstraction: Hiding implementation details via Interfaces (`implements`) and Abstract Classes.
+
+3. Memory & Collections
+- Memory Model:
+  - Heap: Stores all instantiated objects and instance variables (managed by GC: G1, ZGC).
+  - Stack: Stores method call frames, local variables, and primitive values.
+- Collections Framework:
+  - List: `ArrayList` (array-backed), `LinkedList` (doubly-linked).
+  - Map: `HashMap` (bucket array + linked list / red-black tree), `ConcurrentHashMap` (segmented/CAS locks).
+  - Set: `HashSet` (backed by a `HashMap`).

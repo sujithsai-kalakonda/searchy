@@ -1,0 +1,20 @@
+# Python Core Notes
+
+1. Key Features
+- High-level, interpreted, dynamically typed, garbage collected.
+- Supports Object-Oriented, Functional, and Procedural paradigms.
+- GIL (Global Interpreter Lock): Limits execution of Python bytecode to one native thread at a time in CPython.
+
+2. Core Data Structures & Complexities
+- List: Dynamic array (Append: O(1) amortized, Search: O(n), Indexing: O(1))
+- Dict: Hash table (Average Lookup/Insert/Delete: O(1), Worst: O(n))
+- Set: Hash table (Average Add/Lookup/Remove: O(1))
+- Tuple: Immutable sequence
+
+3. Key Concepts
+- Memory Management: Reference counting combined with a generational cyclic garbage collector.
+- Generators: Functions yielding values lazily using the `yield` keyword (O(1) memory usage).
+- Decorators: Higher-order functions that wrap and modify the behavior of another function without altering its source code.
+- Concurrency:
+  - `multiprocessing`: CPU-bound tasks (bypasses GIL by creating separate processes).
+  - `threading` / `asyncio`: I/O-bound tasks (cooperative multitasking / event loop).

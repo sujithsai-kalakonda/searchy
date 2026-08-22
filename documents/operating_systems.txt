@@ -1,0 +1,17 @@
+# Operating Systems Notes
+
+1. Processes vs. Threads
+- Process: Independent execution unit with its own virtual address space (code, data, heap, stack, file descriptors).
+- Thread: Lightweight unit within a process sharing the same address space and open resources, but with its own stack and registers.
+- IPC (Inter-Process Communication): Pipes, shared memory, message queues, sockets.
+
+2. Memory Management
+- Virtual Memory: Decouples physical RAM from process address spaces using Paging.
+- Page Table & TLB: Maps virtual pages to physical frames; Translation Lookaside Buffer (TLB) acts as a hardware cache.
+- Page Fault: Interrupt triggered when a referenced page is not currently in physical RAM.
+
+3. Synchronization & Concurrency
+- Race Condition: Undefined behavior when multiple threads access shared state without synchronization.
+- Mutex vs. Semaphore: Mutex is a locking mechanism (ownership-based); Semaphore is a signaling mechanism (counter-based).
+- Deadlock: Conditions include Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait.
+- CPU Scheduling: FCFS, Round Robin, Shortest Job First (SJF), Multi-Level Feedback Queue (MLFQ).

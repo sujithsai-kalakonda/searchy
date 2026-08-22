@@ -1,0 +1,18 @@
+# Computer Networking Notes
+
+1. OSI vs. TCP/IP Model
+- Layer 7: Application (HTTP, HTTPS, DNS, SSH, FTP)
+- Layer 4: Transport (TCP, UDP)
+- Layer 3: Network (IP, ICMP, Routing)
+- Layer 2: Data Link (Ethernet, MAC addressing, Switches)
+- Layer 1: Physical (Cables, Signals)
+
+2. Core Protocols & Differences
+- TCP: Connection-oriented, reliable, ordered, includes flow/congestion control (3-way handshake: SYN -> SYN-ACK -> ACK).
+- UDP: Connectionless, unreliable, low-latency, packet-based (DNS, VoIP, real-time gaming).
+- HTTP vs. HTTPS: HTTPS layers TLS/SSL encryption over HTTP (port 443 vs. 80).
+- HTTP/2 vs. HTTP/3: HTTP/2 adds multiplexing over TCP; HTTP/3 uses QUIC over UDP to eliminate head-of-line blocking.
+
+3. Key Components
+- DNS: Translates domain names to IP addresses (Recursive vs. Authoritative resolvers).
+- Routing: OSPF, BGP; NAT (Network Address Translation) maps private IPs to public IPs.

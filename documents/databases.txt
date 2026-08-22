@@ -1,0 +1,20 @@
+# Database Systems Notes
+
+1. RDBMS vs. NoSQL
+- RDBMS (PostgreSQL, MySQL): Structured, schema-enforced, relational, SQL-based.
+- NoSQL:
+  - Document: MongoDB (JSON-like BSON documents).
+  - Key-Value: Redis (in-memory data store with disk persistence).
+  - Wide-Column: Cassandra.
+  - Graph: Neo4j.
+
+2. ACID Properties
+- Atomicity: Transactions are all-or-nothing.
+- Consistency: DB transitions only between valid states matching constraints.
+- Isolation: Concurrent transactions do not interfere (Read Uncommitted, Read Committed, Repeatable Read, Serializable).
+- Durability: Committed data survives system failures (WAL / transaction logs).
+
+3. Indexing & Optimization
+- B-Tree / B+ Tree: Standard structure for range queries and equality lookups (O(log n)).
+- Hash Index: O(1) point lookups, no range scan support.
+- Execution Plans: Use `EXPLAIN ANALYZE` to identify table scans, index scans, and join strategies (Nested Loop, Hash Join, Merge Join).
