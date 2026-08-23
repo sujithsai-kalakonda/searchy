@@ -46,14 +46,24 @@ def search(query: str):
             query_words.append(word)
 
     res_docs = []
+    res_docs_dict = (
+        {}
+    )  # this dict contains doc names and how many times it occurs in the res_docs
     for word in query_words:
         docs_list = index.get(word, [])
         res_docs.extend(docs_list)
 
+        for doc in docs_list:
+            if doc in res_docs_dict:
+                res_docs_dict[doc] += 1
+            else:
+                res_docs_dict[doc] = 1
+
     print("Total Docs list", res_docs)
+    print("Total Docs map-1", res_docs_dict)
     print("-" * 50)
 
-    return res_docs
+    return res_docs, res_docs_dict
 
 
 search("python")
