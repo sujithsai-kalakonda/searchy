@@ -33,3 +33,35 @@ for file in documents_path.iterdir():
                 index[word].append(file.name)
 
 print(index)
+
+
+def search(query: str):
+    # split and normalize the query
+    query_words = []
+
+    for word in query.split():
+        word = word.lower()
+        word = word.strip(string.punctuation)
+        if word:
+            query_words.append(word)
+
+    res_docs = []
+    for word in query_words:
+        docs_list = index.get(word, [])
+        res_docs.extend(docs_list)
+
+    print("Total Docs list", res_docs)
+    print("-" * 50)
+
+    return res_docs
+
+
+search("python")
+
+search("tcp")
+
+search("elephant")
+
+search("python networking")
+
+search("physical stack")
