@@ -59,19 +59,41 @@ def search(query: str):
             else:
                 res_docs_dict[doc] = 1
 
-    print("Total Docs list", res_docs)
-    print("Total Docs map-1", res_docs_dict)
-    print("-" * 50)
+    # Sort the dict w.r.t to count
+    sorted_res_docs_dict = dict(
+        sorted(res_docs_dict.items(), key=lambda item: item[1], reverse=True)
+    )
 
-    return res_docs, res_docs_dict
+    # print("Total Docs list", res_docs)
+    # print("Total Docs map-1", sorted_res_docs_dict)
+    # print("-" * 50)
+
+    return sorted_res_docs_dict
 
 
-search("python")
+def main():
+    print("========================")
+    print("       SEARCHY 🔎       ")
+    print("========================")
 
-search("tcp")
+    while True:
+        query = input("Type your query: ")
+        if query.lower().strip() == "exit":
+            print("GoodBye 👋....")
+            return
 
-search("elephant")
+        print("searching.....")
 
-search("python networking")
+        res = search(query)
+        if res:
+            for idx, key in enumerate(res):
+                print(f"{idx+1}. {key}")
+                print(f"   Score: {res[key]}")
+                print()
+        else:
+            print("OOPS! No result found....")
+            print()
 
-search("physical stack")
+
+if __name__ == "__main__":
+    main()
