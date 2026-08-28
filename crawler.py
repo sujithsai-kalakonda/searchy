@@ -25,10 +25,15 @@ def crawl(url, level=0):
 
     soup = BeautifulSoup(html, "html.parser")
 
+    # Get the title text
+    web_title = soup.title.string
+
     # Extract text
     text = soup.get_text(" ", strip=True)
     # print(text)
     print("   ✓ Text extracted")
+
+    pages.append({"url": url, "title": web_title, "text": text})
 
     # Extract valid links
     links = []
@@ -47,4 +52,9 @@ def crawl(url, level=0):
 
 example_url = "https://example.com"
 
+
+pages = []
 crawl(example_url)
+
+print("\n\n")
+print(pages)
