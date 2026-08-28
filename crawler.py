@@ -20,8 +20,12 @@ def crawl(url, level=0):
         return
 
     # Extract html page
-    html = response.read().decode("utf-8")
-    # print(html)
+    try:
+        html = response.read().decode("utf-8")
+        # print(html)
+    except Exception as e:
+        print(f"Error reading: {e}\n")
+        return
 
     soup = BeautifulSoup(html, "html.parser")
 
@@ -58,3 +62,9 @@ crawl(example_url)
 
 print("\n\n")
 print(pages)
+print("\n\n")
+
+from indexer import build_index
+
+print("**INDEX**")
+print(build_index(pages))
