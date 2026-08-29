@@ -16,7 +16,7 @@ def build_index(pages):
         words = text.split()
         for word in words:
 
-            # normalize the words
+            # normalize words
             word = word.strip(string.punctuation)
 
             if word:
