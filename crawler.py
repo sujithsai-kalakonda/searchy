@@ -3,11 +3,11 @@ from urllib.request import urlopen
 # from urllib.error import HTTPError, URLError
 from bs4 import BeautifulSoup
 
-MAX_DEPTH = 5
+MAX_DEPTH = 2
 visited = set()
 
 
-def crawl(url, level=0):
+def crawl(url, pages, level=0):
 
     if url in visited or level >= MAX_DEPTH:
         return
@@ -51,20 +51,20 @@ def crawl(url, level=0):
     print(f"   🔗 Found {len(links)} link(s)\n\n")
 
     for link in links:
-        crawl(link, level + 1)
+        crawl(link, pages, level + 1)
 
 
-example_url = "https://example.com"
+if __name__ == "__main__":
+    example_url = "https://example.com"
 
+    pages = []
+    crawl(example_url, pages=pages)
 
-pages = []
-crawl(example_url)
+    print("\n\n")
+    print(pages)
+    print("\n\n")
 
-print("\n\n")
-print(pages)
-print("\n\n")
+    from indexer import build_index
 
-from indexer import build_index
-
-print("**INDEX**")
-print(build_index(pages))
+    print("**INDEX**")
+    print(build_index(pages))
