@@ -1,41 +1,44 @@
 from pathlib import Path
 import string
 
-documents_path = Path("documents")
+from crawler import crawl
+from indexer import build_index
 
-# This dict contains words and documents list which contains that words
-index = {}
+# documents_path = Path("documents")
 
-for file in documents_path.iterdir():
+# # This dict contains words and documents list which contains that words
+# index = {}
 
-    content = file.read_text()
+# for file in documents_path.iterdir():
 
-    print("=" * 40)
-    print(file.name)
-    # print(content)
+#     content = file.read_text()
 
-    # Text -> words
-    words = content.split()
-    for word in words:
+#     print("=" * 40)
+#     print(file.name)
+#     # print(content)
 
-        # normalize
-        word = word.lower()
-        word = word.strip(string.punctuation)
-        # print(word)
+#     # Text -> words
+#     words = content.split()
+#     for word in words:
 
-        if word:
-            # avoid adding empty string
-            if word not in index:
-                index[word] = []
+#         # normalize
+#         word = word.lower()
+#         word = word.strip(string.punctuation)
+#         # print(word)
 
-            # Also make sure the same document is not appended twice.
-            if file.name not in index[word]:
-                index[word].append(file.name)
+#         if word:
+#             # avoid adding empty string
+#             if word not in index:
+#                 index[word] = []
 
-print(index)
+#             # Also make sure the same document is not appended twice.
+#             if file.name not in index[word]:
+#                 index[word].append(file.name)
+
+# print(index)
 
 
-def search(query: str):
+def search(query: str, index: dict):
     # split and normalize the query
     query_words = []
 
@@ -45,33 +48,52 @@ def search(query: str):
         if word:
             query_words.append(word)
 
+    print(f"Words after normalizing: {query_words}\n")
     res_docs = []
-    res_docs_dict = (
-        {}
-    )  # this dict contains doc names and how many times it occurs in the res_docs
+    # res_docs_dict = (
+    #     {}
+    # )  # this dict contains doc names and how many times it occurs in the res_docs
     for word in query_words:
         docs_list = index.get(word, [])
+        # print(f"DOCS LIST: {docs_list}\n")
         res_docs.extend(docs_list)
 
-        for doc in docs_list:
-            if doc in res_docs_dict:
-                res_docs_dict[doc] += 1
-            else:
-                res_docs_dict[doc] = 1
+        # for doc in docs_list:
+        #     if doc in res_docs_dict:
+        #         res_docs_dict[doc] += 1
+        #     else:
+        #         res_docs_dict[doc] = 1
 
     # Sort the dict w.r.t to count
-    sorted_res_docs_dict = dict(
-        sorted(res_docs_dict.items(), key=lambda item: item[1], reverse=True)
-    )
+    # sorted_res_docs_dict = dict(
+    #     sorted(res_docs_dict.items(), key=lambda item: item[1], reverse=True)
+    # )
 
     # print("Total Docs list", res_docs)
     # print("Total Docs map-1", sorted_res_docs_dict)
     # print("-" * 50)
 
-    return sorted_res_docs_dict
+    # return sorted_res_docs_dict
+
+    # Display the fetched pages
+    return res_docs
 
 
 def main():
+
+    pages = []
+
+    # Example URL
+    example_url = "https://example.com"
+
+    # Crawl
+    crawl(example_url, pages=pages)
+
+    # Build Index
+    index = build_index(pages)
+
+    print(f"INDEX: {index}\n\n")
+
     print("========================")
     print("       SEARCHY 🔎       ")
     print("========================")
@@ -84,11 +106,17 @@ def main():
 
         print("searching.....")
 
-        res = search(query)
+        res = search(query, index)
         if res:
             for idx, key in enumerate(res):
-                print(f"{idx+1}. {key}")
-                print(f"   Score: {res[key]}")
+                # print(f"{idx+1}. {key}")
+                # print(f"   Score: {res[key]}")
+                print()
+
+                org_key = dict(key)  # converting frozenset to dict
+                print(f"{idx+1}. {org_key.get("title", "")}")
+                print()
+                print(f"   {org_key.get("url", None)}")
                 print()
         else:
             print("OOPS! No result found....")
