@@ -22,8 +22,18 @@ def build_index(pages):
 
             if word:
                 if word not in index:
-                    index[word] = set()
+                    # index[word] = set() # this tells whether a word occured in a page/url
 
-                index[word].add(page_id)
+                    index[word] = {
+                        page_id: 1
+                    }  # Now alon with the page_ids we also store the freq of the word occuring in that page_id i.e TF - Term Frequency
+
+                elif page_id in index[word]:
+                    index[word][page_id] += 1
+
+                else:
+                    index[word][page_id] = 1
+
+                # index[word].add(page_id)
 
     return index

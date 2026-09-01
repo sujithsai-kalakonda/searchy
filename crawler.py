@@ -62,9 +62,9 @@ if __name__ == "__main__":
     pages = {}
     crawl(example_url, pages=pages)
 
-    print("\n\n")
-    print(pages)
-    print("\n\n")
+    # print("\n\n")
+    # print(pages)
+    # print("\n\n")
 
     from indexer import build_index
 
