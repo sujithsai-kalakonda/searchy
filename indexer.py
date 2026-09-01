@@ -9,7 +9,8 @@ def build_index(pages):
         print("No pages found to index.")
         return index
 
-    for page in pages:
+    for page_id, page in pages.items():
+
         # First extract text
         text = page.get("text").lower()
 
@@ -23,6 +24,8 @@ def build_index(pages):
                 if word not in index:
                     index[word] = set()
 
-                index[word].add(frozenset(page.items()))
+                # index[word].add(page.get("url"))
+
+                index[word].add(page_id)
 
     return index

@@ -7,7 +7,7 @@ MAX_DEPTH = 2
 visited = set()
 
 
-def crawl(url, pages, level=0):
+def crawl(url, pages, level=0, page_id=1):
 
     if url in visited or level >= MAX_DEPTH:
         return
@@ -37,7 +37,9 @@ def crawl(url, pages, level=0):
     # print(text)
     print("   ✓ Text extracted")
 
-    pages.append({"url": url, "title": web_title, "text": text})
+    # pages.append({"url": url, "title": web_title, "text": text})
+
+    pages[page_id] = {"url": url, "title": web_title, "text": text}
 
     # Extract valid links
     links = []
@@ -51,13 +53,15 @@ def crawl(url, pages, level=0):
     print(f"   🔗 Found {len(links)} link(s)\n\n")
 
     for link in links:
-        crawl(link, pages, level + 1)
+        page_id += 1
+        crawl(link, pages, level + 1, page_id)
 
 
 if __name__ == "__main__":
     example_url = "https://example.com"
 
-    pages = []
+    # pages = []
+    pages = {}
     crawl(example_url, pages=pages)
 
     print("\n\n")
