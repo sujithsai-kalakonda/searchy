@@ -24,8 +24,6 @@ def build_index(pages):
                 if word not in index:
                     index[word] = set()
 
-                # index[word].add(page.get("url"))
-
                 index[word].add(page_id)
 
     return index

@@ -37,8 +37,6 @@ def crawl(url, pages, level=0, page_id=1):
     # print(text)
     print("   ✓ Text extracted")
 
-    # pages.append({"url": url, "title": web_title, "text": text})
-
     pages[page_id] = {"url": url, "title": web_title, "text": text}
 
     # Extract valid links
