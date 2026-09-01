@@ -81,7 +81,7 @@ def search(query: str, index: dict):
 
 def main():
 
-    pages = []
+    pages = {}
 
     # Example URL
     example_url = "https://example.com"
@@ -113,7 +113,8 @@ def main():
                 # print(f"   Score: {res[key]}")
                 print()
 
-                org_key = dict(key)  # converting frozenset to dict
+                org_key = pages.get(key, {})  # Fetch page metada using page_id
+
                 print(f"{idx+1}. {org_key.get("title", "")}")
                 print()
                 print(f"   {org_key.get("url", None)}")
