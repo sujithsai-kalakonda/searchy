@@ -13,6 +13,9 @@ def main():
     # Crawl
     crawl(example_url, pages=pages)
 
+    # with open("sample_pages.txt", "w", encoding="utf-8") as f:
+    #     f.write(str(pages))
+
     # Build Index
     index = build_index(pages)
 
@@ -30,7 +33,7 @@ def main():
 
         print("searching.....")
 
-        res = search(query, index)
+        res = search(query, index, len(pages))
         if res:
             for idx, key in enumerate(res):
                 print()
@@ -41,6 +44,7 @@ def main():
                 print()
                 print(f"   {org_key.get("url", None)}")
                 print()
+                print(f"   score: {res[key]}")
         else:
             print("OOPS! No result found....")
             print()

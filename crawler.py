@@ -12,6 +12,8 @@ def crawl(url, pages, level=0, page_id=1):
     if url in visited or level >= MAX_DEPTH:
         return
 
+    visited.add(url)
+
     print(f"🕷️ Crawling: {url} - level-{level}")
     try:
         response = urlopen(url)
@@ -62,9 +64,9 @@ if __name__ == "__main__":
     pages = {}
     crawl(example_url, pages=pages)
 
-    print("\n\n")
-    print(pages)
-    print("\n\n")
+    # print("\n\n")
+    # print(pages)
+    # print("\n\n")
 
     from indexer import build_index
 
