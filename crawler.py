@@ -12,6 +12,8 @@ def crawl(url, pages, level=0, page_id=1):
     if url in visited or level >= MAX_DEPTH:
         return
 
+    visited.add(url)
+
     print(f"🕷️ Crawling: {url} - level-{level}")
     try:
         response = urlopen(url)
